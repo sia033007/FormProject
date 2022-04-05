@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="~/css/usercss.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.7/css/fileinput.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@latest/dist/css/persian-datepicker.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true" /> 
 }
 @{
     ViewData["Title"] = "فرم ثبت نام";
@@ -100,7 +101,8 @@
 </div>
 
 <div class="submit-progress d-none bg-dark text-white">
-    <label>لطفا صبر کنید...</label>
+    <label>لطفا صبر کنید...</label> <br />
+    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
 </div>
 @section scripts{
     <partial name="_ValidationScriptsPartial" />

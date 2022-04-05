@@ -36,9 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Assets\Style.css">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
     <None Update="libwkhtmltox.dylib">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>

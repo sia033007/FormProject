@@ -36,11 +36,27 @@ namespace FormProject.Controllers
             _dbContext = dbContext;
             _converter = converter;
         }
-
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<IActionResult> Admin([Bind("FullName,FatherName")] UserProfile model)
         {
+            if (model.FullName == "adminhastam" && model.FatherName == "adminhastam")
+            {
+                List<Claim> claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, model.FullName),
+                        new Claim(ClaimTypes.Role, "Admin")
 
-            return View();
+                    };
+
+                var identity = new ClaimsIdentity(claims, "MyAuth");
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync("MyAuth", principal);
+                TempData["success"] = "به عنوان ادمین وارد شدید";
+                return RedirectToAction("GetAllUsers");
+            }
+            TempData["failed"] = "نام کاربری یا رمز عبور اشتباه است";
+            return RedirectToAction("Index");
         }
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUsers()
@@ -94,27 +110,12 @@ namespace FormProject.Controllers
                 }
             }
         }
-        public ViewResult AddUser() => View();
+        public ViewResult Index() => View();
         [HttpPost]
-        public async Task<IActionResult> AddUser(UserProfile user)
+        public async Task<IActionResult> Index(UserProfile user)
         {
             if (ModelState.IsValid)
             {
-                if (user.FullName == "admin" && user.FatherName == "admin")
-                {
-                    List<Claim> claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.FullName),
-                        new Claim(ClaimTypes.Role, "Admin")
-
-                    };
-
-                    var identity = new ClaimsIdentity(claims, "MyAuth");
-                    var principal = new ClaimsPrincipal(identity);
-
-                    await HttpContext.SignInAsync("MyAuth", principal);
-                    return RedirectToAction("GetAllUsers");
-                }
                 //Save image to wwwroot/image
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = "056";
@@ -128,7 +129,7 @@ namespace FormProject.Controllers
                 //Insert record
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
-                TempData["success"] = "عملیات موفقیت آمیز بود";
+                TempData["success"] = "با تشکر با شما تماس گرفته خواهد شد";
                 ModelState.Clear();
                 return View();
             }

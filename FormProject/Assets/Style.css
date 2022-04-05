@@ -1,6 +1,6 @@
 ﻿table {
     width: 100%;
-    margin:8px;
+    margin: 8px;
 }
 
 table, th, td {
@@ -11,9 +11,9 @@ table, th, td {
 }
 
 th, td {
-    width:50%;   
-}
-img{
-    margin-bottom:5px;
+    width: 50%;
 }
 
+img {
+    margin-bottom: 5px;
+}
