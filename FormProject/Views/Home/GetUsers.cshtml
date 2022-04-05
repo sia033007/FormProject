@@ -1,38 +1,18 @@
-﻿@model IEnumerable<UserProfile>
-@{ 
-    ViewData["Title"] = "کاربران";
+﻿@{ 
+    ViewData["Title"] = "لیست کاربران";
 }
-<div class="container">
+@section Styles{ 
+<link rel="stylesheet" href="~/css/usercss.css" asp-append-version="true" />
+}
+<div class="container text-center mt-5 p-5 bg-warning text-dark h-25 w-75 border border-5 border-dark shadow" style="font-family:yekan;">
     <div class="row justify-content-center">
-        <div class="col-10">
-            @foreach (var user in Model)
-            {
-                <table class="table table-bordered mt-5 text-center w-100">
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td><img src="@("~/image/"+user.ImageName)" asp-append-version="true" width="150px" height="150px" /></td>
-                        </tr>
-                        <tr>
-                            <td class="p-3">نام و نام خانوادگی : @user.FullName</td>
-                            <td class="p-3">نام پدر : @user.FatherName</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3">کد ملی : @user.IdCardNumber</td>
-                            <td class="p-3">تاریخ تولد : @user.DateOfBirth</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3">وضعیت تعهل : @user.MaritalStatus</td>
-                            <td class="p-3">وضعیت نظام وظیفه : @user.MilitaryServiceStatus</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3">شماره تماس : @user.CallNumber</td>
-                            <td class="p-3">آدرس : @user.Address</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            }
+        <div class="col-6">
+            <a asp-action="Excel" class="btn btn-lg btn-dark">اکسل<br />
+            <i class="h2 bi bi-file-excel" style="color:darkgreen"></i></a>
+        </div>
+        <div class="col-6">
+            <a asp-action="CreatePdf" class="btn btn-lg btn-dark">پی دی اف<br />
+            <i class="h2 bi bi-file-pdf" style="color:crimson"></i></a>
         </div>
     </div>
 </div>

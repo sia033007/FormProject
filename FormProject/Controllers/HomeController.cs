@@ -53,7 +53,7 @@ namespace FormProject.Controllers
 
                 await HttpContext.SignInAsync("MyAuth", principal);
                 TempData["success"] = "به عنوان ادمین وارد شدید";
-                return RedirectToAction("GetAllUsers");
+                return RedirectToAction("GetUsers");
             }
             TempData["failed"] = "نام کاربری یا رمز عبور اشتباه است";
             return RedirectToAction("Index");
@@ -220,10 +220,9 @@ namespace FormProject.Controllers
             }
             return sb.ToString();
         }
-        public async Task<IActionResult> GetUsers()
+        public IActionResult GetUsers()
         {
-            var users = await _dbContext.Users.ToListAsync();
-            return View(users);
+            return View();
         }
     public IActionResult Complete()
         {
