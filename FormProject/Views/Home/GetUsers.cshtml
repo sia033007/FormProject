@@ -1,0 +1,38 @@
+﻿@model IEnumerable<UserProfile>
+@{ 
+    ViewData["Title"] = "کاربران";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            @foreach (var user in Model)
+            {
+                <table class="table table-bordered mt-5 text-center w-100">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><img src="@("~/image/"+user.ImageName)" asp-append-version="true" width="150px" height="150px" /></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">نام و نام خانوادگی : @user.FullName</td>
+                            <td class="p-3">نام پدر : @user.FatherName</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">کد ملی : @user.IdCardNumber</td>
+                            <td class="p-3">تاریخ تولد : @user.DateOfBirth</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">وضعیت تعهل : @user.MaritalStatus</td>
+                            <td class="p-3">وضعیت نظام وظیفه : @user.MilitaryServiceStatus</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">شماره تماس : @user.CallNumber</td>
+                            <td class="p-3">آدرس : @user.Address</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿@model UserProfile
+@section Styles{
+    <link rel="stylesheet" href="~/css/usercss.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.7/css/fileinput.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@latest/dist/css/persian-datepicker.min.css" asp-append-version="true" />
+}
+@{
+    ViewData["Title"] = "فرم ثبت نام";
+}
+<style>
+    input[type=file]::file-selector-button {
+        border: 2px solid #0026ff;
+        padding: .2em .4em;
+        border-radius: .2em;
+        background-color: #0026ff;
+        transition: 1s;
+        color: white;
+    }
+    .submit-progress-bg{
+        background-color:lightgray;
+        opacity:.5;
+    }
+</style>
+<div class="content">
+    <h1 class="text-center bg-danger text-white" style="font-family:nazanin;">فرم ثبت نام</h1>
+    <form asp-action="AddUser" method="post" class="p-5 border border-2 border-danger shadow" enctype="multipart/form-data">
+        <div class="container">
+            <div class="row justify-content-center text-end">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input asp-for="FullName" type="text" class="form-control text-end" placeholder="نام و نام خانوادگی" />
+                    </div>
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input asp-for="FatherName" type="text" class="form-control text-end" placeholder="نام پدر" />
+                    </div>
+                    <span asp-validation-for="FatherName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <div class="input-group">
+                        <input asp-for="IdCardNumber" class="form-control text-end" placeholder="شماره ملی" />
+                    </div>
+                    <span asp-validation-for="IdCardNumber" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" asp-for="DateOfBirth" id="mydate" placeholder="تاریخ تولد" />
+                    </div>
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <label asp-for="MaritalStatus" class="text-dark text-muted"></label> <br />
+                    <select asp-for="MaritalStatus" class="mt-3">
+                        <option selected>مجرد</option>
+                        <option>متاهل</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <label asp-for="MilitaryServiceStatus" class="text-dark text-muted"></label> <br />
+                    <select asp-for="MilitaryServiceStatus" class="mt-3">
+                        <option selected>کارت پایان خدمت دارم</option>
+                        <option>کارت معافیت دارم</option>
+                        <option>سربازی نرفتم</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 mt-4">
+                    <div class="input-group">
+                        <input asp-for="CallNumber" class="form-control text-end" placeholder="شماره تماس" />
+                    </div>
+                    <span asp-validation-for="CallNumber" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-4">
+                    <div class="input-group">
+                        <input asp-for="Address" class="form-control text-end" placeholder="آدرس" />
+                    </div>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3" style="direction:ltr;">
+                    <label asp-for="ImageFile" class="text-dark text-muted"></label> <br />
+                    <input id="input-b2" asp-for="ImageFile" accept="image/jpeg" type="file" class="file" data-show-preview="false" data-show-caption="true" data-msg-placeholder="فایل را انتخاب کنید">
+
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3 text-dark">
+                    <ul>
+                        <li>فایل عکس پرسنلی حتما از فرمت jpeg باشد</li>
+                        <li>حجم عکس بیشتر از 1 مگابایت نباشد</li>
+                        <li>حداکثر سایز موردقبول 300x300 می باشد</li>
+                    </ul>
+
+                </div>
+            </div> <br />
+            <div class="col-sm-6 mt-5">
+                <button id="button" type="submit" class="btn btn-lg btn-success">ارسال اطلاعات</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="submit-progress d-none bg-dark text-white">
+    <label>لطفا صبر کنید...</label>
+</div>
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.7/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#mydate").persianDatepicker({
+                altField: '#mydate',
+                altFormat: "YYYY/MM/DD",
+                observer: true,
+                format: 'YYYY/MM/DD',
+                initialValue: false,
+                initialValueType: 'persian',
+                autoClose: true,
+                maxDate: 'today',
+            });
+            $("#button").click(function () {
+                $(this).prop("disabled", true);
+                $(".submit-progress").removeClass("d-none");
+                $(".content").addClass("submit-progress-bg");
+
+            })
+        });
+    </script>
+}
+
+

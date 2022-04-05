@@ -1,0 +1,10 @@
+﻿@model UserProfile
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+<dd>
+    <img src="@("~/image/"+Model.ImageName)" asp-append-version="true" width="250px" height="250px" />
+</dd>

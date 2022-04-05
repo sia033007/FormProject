@@ -1,0 +1,35 @@
+﻿@model UserProfile
+@{ 
+    ViewData["Title"] = "اطلاعات کاربر";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <table class="table table-bordered mt-5 text-center w-100">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td><img src="@("~/image/"+Model.ImageName)" asp-append-version="true" width="150px" height="150px" /></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3">نام و نام خانوادگی : @Model.FullName</td>
+                        <td class="p-3">نام پدر : @Model.FatherName</td>
+                    </tr>
+                    <tr>
+                        <td class="p-3">کد ملی : @Model.IdCardNumber</td>
+                        <td class="p-3">تاریخ تولد : @Model.DateOfBirth</td>
+                    </tr>
+                    <tr>
+                        <td class="p-3">وضعیت تعهل : @Model.MaritalStatus</td>
+                        <td class="p-3">وضعیت نظام وظیفه : @Model.MilitaryServiceStatus</td>
+                    </tr>
+                    <tr>
+                        <td class="p-3">شماره تماس : @Model.CallNumber</td>
+                        <td class="p-3">آدرس : @Model.Address</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

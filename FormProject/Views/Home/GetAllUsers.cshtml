@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UserProfile>
+@section Styles{ 
+<link rel="stylesheet" href="~/css/usercss.css" asp-append-version="true" />
+}
+@{ 
+    ViewData["Title"] = "تمامی کاربران";
+}
+<div class="container" id="allusers">
+    <div class="ms-auto mt-1 p-1">
+        <a class="btn btn-info" asp-action="Excel">دانلود فایل اکسل کاربران</a>
+        <a class="btn btn-primary" asp-action="CreatePdf">دانلود فایل پی دی اف کاربران</a>
+    </div>
+
+    <h1 class="text-center">لیست کاربران</h1>
+    <table class="table table-bordered table-striped mt-5 text-center">
+        <thead>
+            <tr>
+                <th>کاربر</th>
+                <th>عکس کاربر</th>
+                <th>مشاهده جزئیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.FullName</td>
+                    <td><img src="@("~/image/"+user.ImageName)" asp-append-version="true" width="50px" height="50px" /></td>
+                    <td><a asp-action="GetUser" asp-route-id="@user.Id" class="btn btn-success">مشاهده کاربر</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
