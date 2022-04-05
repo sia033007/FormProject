@@ -9,9 +9,8 @@ table, th, td {
     font-size: 15px;
     text-align: center;
 }
-
-th, td {
-    width: 50%;
+#address{
+    width:70%;
 }
 
 img {

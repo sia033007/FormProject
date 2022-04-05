@@ -209,7 +209,7 @@ namespace FormProject.Controllers
                                         <tr>
                                           <td>شماره تماس :
                                                  {7}</td>
-                                          <td>آدرس :
+                                          <td id='address'>آدرس :
                                                  {8}</td>
                                         </tr>", picAddress, user.FullName, user.FatherName, user.IdCardNumber,
                                         user.DateOfBirth, user.MaritalStatus, user.MilitaryServiceStatus, user.CallNumber, user.Address);

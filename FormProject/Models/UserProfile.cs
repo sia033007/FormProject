@@ -20,7 +20,7 @@ namespace FormProject.Models
         public string FatherName { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "کد ملی")]
-        [StringLength(10, ErrorMessage = "تعداد کاراکترها کمتر یا بیشتر از حد مجاز است")]
+        [StringLength(10, ErrorMessage = "تعداد کاراکتر بیش از حد مجاز")]
         public string IdCardNumber { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "وضعیت تعهل")]
@@ -36,10 +36,11 @@ namespace FormProject.Models
         public IFormFile ImageFile { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "شماره تماس")]
-        [StringLength(11, ErrorMessage ="تعداد کاراکترها کمتر یا بیشتر از حد مجاز است")]
+        [StringLength(11, ErrorMessage ="تعداد کاراکتر بیش از حد مجاز")]
         public string CallNumber { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "آدرس")]
+        [MaxLength(90, ErrorMessage ="تعداد کاراکتر بیش از حد مجاز")]
         public string Address { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "تاریخ تولد")]
