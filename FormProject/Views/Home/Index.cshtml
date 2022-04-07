@@ -25,8 +25,8 @@
 </style>
 
 <!-- Button trigger modal -->
-<div class="ms-auto bg-dark text-white mt-2 p-2">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-family:yekan;">
+<div class="ms-auto bg-warning mt-2 p-2 text-white">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-family:yekan;">
         گزارش
     </button>
 </div>
@@ -62,8 +62,8 @@
 
 
 <div class="content">
-    <h1 class="text-center bg-danger text-white" style="font-family:nazanin;">فرم ثبت نام</h1>
-    <form asp-action="Index" method="post" class="p-5 border border-2 border-danger shadow" enctype="multipart/form-data">
+    <h1 class="text-center bg-secondary text-white" style="font-family:nazanin;">فرم ثبت نام</h1>
+    <form asp-action="Index" method="post" class="p-5 border border-2 border-secondary shadow" enctype="multipart/form-data" id="myForm">
         <div class="container">
             <div class="row justify-content-center text-end">
                 <div class="col-sm-6">
@@ -112,12 +112,10 @@
                     <span asp-validation-for="CallNumber" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6 mt-4">
-                    <div class="input-group">
-                        <input asp-for="Address" class="form-control text-end" placeholder="آدرس" />
-                    </div>
+                    <textarea asp-for="Address" class="form-control" rows="3" placeholder="آدرس"></textarea>
                     <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
-                <div class="col-sm-6 mt-3" style="direction:ltr;">
+                <div class="col-sm-6 mt-1" style="direction:ltr;">
                     <label asp-for="ImageFile" class="text-dark text-muted"></label> <br />
                     <input id="input-b2" asp-for="ImageFile" accept="image/jpeg" type="file" class="file" data-show-preview="false" data-show-caption="true" data-msg-placeholder="فایل را انتخاب کنید">
 
@@ -132,14 +130,14 @@
 
                 </div>
             </div> <br />
-            <div class="col-sm-6 mt-5">
+            <div class="col-sm-6 mt-3">
                 <button id="button" type="submit" class="btn btn-lg btn-success">ارسال اطلاعات</button>
             </div>
         </div>
     </form>
 </div>
 
-<div class="submit-progress d-none bg-dark text-white">
+<div class="submit-progress d-none bg-warning border border-5 border-dark shadow">
     <label>لطفا صبر کنید...</label> <br />
     <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
 </div>
@@ -161,9 +159,12 @@
                 maxDate: 'today',
             });
             $("#button").click(function () {
-                $(this).prop("disabled", true);
-                $(".submit-progress").removeClass("d-none");
-                $(".content").addClass("submit-progress-bg");
+                $("#myForm").validate();
+                if ($("#myForm").valid() === true) {
+                    $(this).prop("disabled", true);
+                    $(".submit-progress").removeClass("d-none");
+                    $(".content").addClass("submit-progress-bg");
+                }
 
             })
         });

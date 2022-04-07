@@ -37,6 +37,7 @@ namespace FormProject
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options=> options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
+            //Data Source = SQL5104.site4now.net,1433; Initial Catalog = db_a85280_walter033001; User Id = db_a85280_walter033001_admin; Password = Amin3510147741
             services.AddAuthentication("MyAuth").AddCookie("MyAuth", options =>
             {
                 options.Cookie.HttpOnly = true;

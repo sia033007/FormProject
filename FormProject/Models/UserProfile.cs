@@ -14,7 +14,7 @@ namespace FormProject.Models
         public int Id { get; set; }
         [Required(ErrorMessage ="این فیلد اجباری است")]
         [Display(Name ="نام و نام خانوادگی")]
-        [MaxLength(27, ErrorMessage ="تعداد کاراکتر بیش از حد مجاز")]
+        [MaxLength(22, ErrorMessage ="تعداد کاراکتر بیش از حد مجاز")]
         public string FullName { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "نام پدر")]
@@ -26,9 +26,11 @@ namespace FormProject.Models
         public string IdCardNumber { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "وضعیت تعهل")]
+        [MaxLength(5)]
         public string MaritalStatus { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "وضعیت نظام وظیفه")]
+        [MaxLength(20)]
         public string MilitaryServiceStatus { get; set; }
         public string ImageName { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
@@ -41,7 +43,7 @@ namespace FormProject.Models
         public string CallNumber { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "آدرس")]
-        [MaxLength(90, ErrorMessage ="تعداد کاراکتر بیش از حد مجاز")]
+        [MaxLength(70, ErrorMessage ="تعداد کاراکتر بیش از حد مجاز")]
         public string Address { get; set; }
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [Display(Name = "تاریخ تولد")]
