@@ -27,7 +27,7 @@ namespace FormProject.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly ApplicationDbContext _dbContext;
-        private IConverter _converter;
+        private readonly IConverter _converter;
 
         public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostEnvironment, ApplicationDbContext dbContext, IConverter converter)
         {
@@ -221,10 +221,6 @@ namespace FormProject.Controllers
             return sb.ToString();
         }
         public IActionResult GetUsers()
-        {
-            return View();
-        }
-    public IActionResult Complete()
         {
             return View();
         }
